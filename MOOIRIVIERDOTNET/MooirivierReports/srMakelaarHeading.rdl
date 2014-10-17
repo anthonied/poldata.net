@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner" xmlns="http://schemas.microsoft.com/sqlserver/reporting/2008/01/reportdefinition">
+  <DataSources>
+    <DataSource Name="Mooirivier">
+      <DataSourceReference>Mooirivier</DataSourceReference>
+      <rd:DataSourceID>2a237636-849f-4ff7-8db4-9e3124395bf9</rd:DataSourceID>
+    </DataSource>
+  </DataSources>
+  <DataSets>
+    <DataSet Name="Logo">
+      <Fields>
+        <Field Name="Makelaar_Logo">
+          <DataField>Makelaar_Logo</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Makelaar_LogoLand">
+          <DataField>Makelaar_LogoLand</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>Mooirivier</DataSourceName>
+        <CommandText>SELECT     poldata5.Makelaar.Makelaar_Logo, poldata5.Makelaar.Makelaar_LogoLand
+FROM         poldata5.AREA INNER JOIN
+                      poldata5.Makelaar ON poldata5.AREA.fkMakelaar = poldata5.Makelaar.pkMakelaar
+WHERE     poldata5.AREA.Area_kode = @Area</CommandText>
+        <QueryParameters>
+          <QueryParameter Name="@Area">
+            <Value>=Parameters!Area.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
+      </Query>
+    </DataSet>
+  </DataSets>
+  <Body>
+    <ReportItems>
+      <Image Name="Image1">
+        <Source>External</Source>
+        <Value>="images/" + First(Fields!Makelaar_Logo.Value, "Logo")</Value>
+        <Sizing>FitProportional</Sizing>
+        <Left>2.14313cm</Left>
+        <Height>70pt</Height>
+        <Width>480pt</Width>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+        </Style>
+      </Image>
+    </ReportItems>
+    <Height>2.46944cm</Height>
+    <Style />
+  </Body>
+  <ReportParameters>
+    <ReportParameter Name="Area">
+      <DataType>String</DataType>
+      <Prompt>Area</Prompt>
+    </ReportParameter>
+  </ReportParameters>
+  <Width>20.92854cm</Width>
+  <Page>
+    <PageHeight>27.94cm</PageHeight>
+    <PageWidth>21.59cm</PageWidth>
+    <LeftMargin>1in</LeftMargin>
+    <RightMargin>1in</RightMargin>
+    <TopMargin>1in</TopMargin>
+    <BottomMargin>1in</BottomMargin>
+    <ColumnSpacing>1.27cm</ColumnSpacing>
+    <Style />
+  </Page>
+  <Language>en-US</Language>
+  <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
+  <rd:ReportID>960b3381-ef02-4894-94dc-29b8a2cd71ce</rd:ReportID>
+  <rd:ReportUnitType>Cm</rd:ReportUnitType>
+</Report>
